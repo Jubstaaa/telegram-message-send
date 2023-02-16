@@ -127,8 +127,8 @@ Create a Telegram bot with BotFather before connecting your bot to Telegram.
 
 ## telegramSendDice
 
-| Prop     | Required | Type   | Example     |
-| -------- | -------- | ------ | ----------- | ---- | ------- | ---------- | -------- | ----- |
-| `botKey` | yes      | string | `#########` |
-| `chatId` | yes      | string | `#########` |
-| `type`   | no       | string | `dice       | dart | bowling | basketball | football | slot` |
+| Prop     | Required | Type   | Example                                                |
+| -------- | -------- | ------ | ------------------------------------------------------ |
+| `botKey` | yes      | string | `#########`                                            |
+| `chatId` | yes      | string | `#########`                                            |
+| `type`   | no       | string | `dice / dart / bowling / basketball / football / slot` |
