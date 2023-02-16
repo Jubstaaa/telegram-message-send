@@ -2,9 +2,8 @@ export const telegramSendMessage = (botKey: string, chatId: string, text: string
   fetch(`https://api.telegram.org/bot${botKey}/sendMessage?chat_id=${chatId}&text=${text}`).then((res) => {
     if (res.status > 400) {
       return false
-    } else if (res.status > 200) {
+    } 
       return true
-    }
   })
 }
 
@@ -16,9 +15,8 @@ export const telegramSendPhoto = (botKey: string, chatId: string, imageURL: stri
   ).then((res) => {
     if (res.status > 400) {
       return false
-    } else if (res.status > 200) {
+    } 
       return true
-    }
   })
 }
 
@@ -30,9 +28,8 @@ export const telegramSendAudio = (botKey: string, chatId: string, audioURL: stri
   ).then((res) => {
     if (res.status > 400) {
       return false
-    } else if (res.status > 200) {
+    } 
       return true
-    }
   })
 }
 
@@ -44,9 +41,8 @@ export const telegramSendDocument = (botKey: string, chatId: string, videoURL: s
   ).then((res) => {
     if (res.status > 400) {
       return false
-    } else if (res.status > 200) {
+    } 
       return true
-    }
   })
 }
 
@@ -58,9 +54,8 @@ export const telegramSendVideo = (botKey: string, chatId: string, videoURL: stri
   ).then((res) => {
     if (res.status > 400) {
       return false
-    } else if (res.status > 200) {
+    } 
       return true
-    }
   })
 }
 
@@ -72,9 +67,8 @@ export const telegramSendGIF = (botKey: string, chatId: string, gifURL: string, 
   ).then((res) => {
     if (res.status > 400) {
       return false
-    } else if (res.status > 200) {
+    } 
       return true
-    }
   })
 }
 
@@ -84,9 +78,8 @@ export const telegramSendLocation = (botKey: string, chatId: string, latitude: n
   ).then((res) => {
     if (res.status > 400) {
       return false
-    } else if (res.status > 200) {
+    } 
       return true
-    }
   })
 }
 
@@ -96,9 +89,8 @@ export const telegramSendContact = (botKey: string, chatId: string, name: string
   ).then((res) => {
     if (res.status > 400) {
       return false
-    } else if (res.status > 200) {
+    } 
       return true
-    }
   })
 }
 
@@ -110,9 +102,8 @@ export const telegramSendPoll = (botKey: string, chatId: string, question: strin
   ).then((res) => {
     if (res.status > 400) {
       return false
-    } else if (res.status > 200) {
+    } 
       return true
-    }
   })
 }
 
@@ -145,9 +136,8 @@ export const telegramSendDice = (botKey: string, chatId: string, type: string) =
     (res) => {
       if (res.status > 400) {
         return false
-      } else if (res.status > 200) {
+      } 
         return true
-      }
     },
   )
 }
