@@ -1,4 +1,3 @@
-```markdown
 # Telegram Message Send
 
 This library provides a simple class-based interface for sending messages and various media types to a Telegram bot.
