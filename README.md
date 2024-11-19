@@ -1,49 +1,45 @@
+```markdown
 # Telegram Message Send
+
+This library provides a simple class-based interface for sending messages and various media types to a Telegram bot.
 
 ## Installation
 
 #### With yarn
 
-```sh
+```bash
 yarn add telegram-message-send
 ```
 
 #### With NPM
 
-```sh
+```bash
 npm install telegram-message-send
 ```
 
 ## Getting Started
 
-```jsx
-import {
-  telegramSendMessage,
-  telegramSendPhoto,
-  telegramSendAudio,
-  telegramSendDocument,
-  telegramSendLocation,
-  telegramSendContact,
-  telegramSendPoll,
-  telegramSendDice,
-} from 'telegram-message-send'
+```typescript
+import { TelegramBot } from 'telegram-message-send';
 
-const botKey = '#########'
-const chatId = '#########'
+const botKey = 'YOUR_BOT_KEY';
+const chatId = 'YOUR_CHAT_ID';
 
-telegramSendMessage(botKey, chatId, 'Hello World')
-telegramSendPhoto(botKey, chatId, 'https://avatars.githubusercontent.com/u/100691616?s=200&v=4', 'Custom Caption')
-telegramSendAudio(botKey, chatId, 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3', 'Custom Caption')
-telegramSendDocument(
-  botKey,
-  chatId,
-  'https://s2.q4cdn.com/175719177/files/doc_presentations/Placeholder-PDF.pdf',
-  'Custom Caption',
-)
-telegramSendLocation(botKey, chatId, 41.084677113651814, 29.00455392606353)
-telegramSendContact(botKey, chatId, 'Ilker Balcilar', '+905555555555')
-telegramSendPoll(botKey, chatId, 'Which one would you prefer', ['Javascript', 'Typescript'])
-telegramSendDice(botKey, chatId, 'dice')
+const bot = new TelegramBot(botKey, chatId);
+
+async function sendMessages() {
+  await bot.sendMessage('Hello World');
+  await bot.sendPhoto('https://avatars.githubusercontent.com/u/100691616?s=200&v=4', 'Custom Caption');
+  await bot.sendAudio('https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3', 'Custom Caption');
+  await bot.sendDocument('https://s2.q4cdn.com/175719177/files/doc_presentations/Placeholder-PDF.pdf', 'Custom Caption');
+  await bot.sendLocation(41.084677113651814, 29.00455392606353);
+  await bot.sendContact('Ilker Balcilar', '+905555555555');
+  await bot.sendPoll('Which one would you prefer', ['Javascript', 'Typescript']);
+  await bot.sendDice('dice'); // or 'dart', 'basketball', etc.
+}
+
+
+sendMessages();
 ```
 
 ## Create a new Telegram bot with BotFather
@@ -51,84 +47,73 @@ telegramSendDice(botKey, chatId, 'dice')
 Create a Telegram bot with BotFather before connecting your bot to Telegram.
 
 1. Start a new conversation with the [BotFather](https://telegram.me/botfather).
-1. Send /newbot to create a new Telegram bot.
-1. When asked, enter a name for the bot.
-1. Copy and save the Telegram bot's access token for later steps.
+2. Send `/newbot` to create a new Telegram bot.
+3. When asked, enter a name for the bot.
+4. Copy and save the Telegram bot's access token (your `botKey`) for later steps.
 
-## Get your Get Your Telegram Chat ID
+## Get Your Telegram Chat ID
 
 1. In your Telegram account, search for “@myidbot” or open this link [t.me/myidbot](https://t.me/myidbot) on your smartphone.
-1. Start a conversation with that bot and type /getid. You will get a reply back with your user ID.
-1. Note the user id.
+2. Start a conversation with that bot and type `/getid`. You will get a reply back with your user ID.
+3. Note the user ID (your `chatId`).
 
 > In order to receive a message from the bot, you must first send a message to the bot and create a chat.
 
-## telegramSendMessage
+## TelegramBot Class Methods
 
-| Prop     | Required | Type   | Example       |
-| -------- | -------- | ------ | ------------- |
-| `botKey` | yes      | string | `#########`   |
-| `chatId` | yes      | string | `#########`   |
-| `text`   | yes      | string | `Hello World` |
 
-## telegramSendMessage
+### `new TelegramBot(botKey, chatId)`
 
-| Prop       | Required | Type   | Example                                                       |
-| ---------- | -------- | ------ | ------------------------------------------------------------- |
-| `botKey`   | yes      | string | `#########`                                                   |
-| `chatId`   | yes      | string | `#########`                                                   |
-| `photoURL` | yes      | string | `https://avatars.githubusercontent.com/u/100691616?s=200&v=4` |
-| `caption`  | no       | string | `Custom Caption`                                              |
+* **`botKey`** (string, required): Your Telegram bot's access token.
+* **`chatId`** (string, required): The ID of the chat to send messages to.
 
-## telegramSendAudio
 
-| Prop       | Required | Type   | Example                                                         |
-| ---------- | -------- | ------ | --------------------------------------------------------------- |
-| `botKey`   | yes      | string | `#########`                                                     |
-| `chatId`   | yes      | string | `#########`                                                     |
-| `audioURL` | yes      | string | `https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3` |
-| `caption`  | no       | string | `Custom Caption`                                                |
+### `sendMessage(text)`
 
-## telegramSendDocument
+* **`text`** (string, required): The message text to send.
 
-| Prop          | Required | Type   | Example                                                                      |
-| ------------- | -------- | ------ | ---------------------------------------------------------------------------- |
-| `botKey`      | yes      | string | `#########`                                                                  |
-| `chatId`      | yes      | string | `#########`                                                                  |
-| `documentURL` | yes      | string | `https://s2.q4cdn.com/175719177/files/doc_presentations/Placeholder-PDF.pdf` |
-| `caption`     | no       | string | `Custom Caption`                                                             |
+### `sendPhoto(photoURL, caption?)`
 
-## telegramSendLocation
+* **`photoURL`** (string, required): URL of the photo to send.
+* **`caption`** (string, optional): Photo caption.
 
-| Prop        | Required | Type   | Example              |
-| ----------- | -------- | ------ | -------------------- |
-| `botKey`    | yes      | string | `#########`          |
-| `chatId`    | yes      | string | `#########`          |
-| `latitude`  | yes      | number | `41.084677113651814` |
-| `longitude` | yes      | number | `29.00455392606353`  |
+### `sendAudio(audioURL, caption?)`
 
-## telegramSendContact
+* **`audioURL`** (string, required): URL of the audio file to send.
+* **`caption`** (string, optional): Audio caption.
 
-| Prop           | Required | Type   | Example          |
-| -------------- | -------- | ------ | ---------------- |
-| `botKey`       | yes      | string | `#########`      |
-| `chatId`       | yes      | string | `#########`      |
-| `name`         | yes      | string | `Ilker Balcilar` |
-| `phone_number` | yes      | string | `+905555555555`  |
+### `sendDocument(documentURL, caption?)`
 
-## telegramSendPoll
+* **`documentURL`** (string, required): URL of the document to send.
+* **`caption`** (string, optional): Document caption.
 
-| Prop       | Required | Type                  | Example                        |
-| ---------- | -------- | --------------------- | ------------------------------ |
-| `botKey`   | yes      | string                | `#########`                    |
-| `chatId`   | yes      | string                | `#########`                    |
-| `question` | yes      | string                | `Which one would you prefer`   |
-| `options`  | yes      | Array<string<string>> | `["Javascript", "Typescript"]` |
+### `sendVideo(videoURL, caption?)`
 
-## telegramSendDice
+* **`videoURL`** (string, required): URL of the video to send.
+* **`caption`** (string, optional): Video caption.
 
-| Prop     | Required | Type   | Example                                                |
-| -------- | -------- | ------ | ------------------------------------------------------ |
-| `botKey` | yes      | string | `#########`                                            |
-| `chatId` | yes      | string | `#########`                                            |
-| `type`   | no       | string | `dice / dart / bowling / basketball / football / slot` |
+### `sendGIF(gifURL, caption?)`
+
+* **`gifURL`** (string, required): URL of the GIF to send.
+* **`caption`** (string, optional): GIF caption.
+
+
+### `sendLocation(latitude, longitude)`
+
+* **`latitude`** (number, required): Latitude of the location.
+* **`longitude`** (number, required): Longitude of the location.
+
+### `sendContact(name, phoneNumber)`
+
+* **`name`** (string, required): Contact's name.
+* **`phoneNumber`** (string, required): Contact's phone number.
+
+### `sendPoll(question, options)`
+
+* **`question`** (string, required): Poll question.
+* **`options`** (string[], required): Array of poll options.
+
+### `sendDice(type?)`
+
+* **`type`** (string, optional): Type of dice to send ('dice', 'dart', 'basketball', 'football', 'bowling', 'slot'). Defaults to 'dice'.
+```
